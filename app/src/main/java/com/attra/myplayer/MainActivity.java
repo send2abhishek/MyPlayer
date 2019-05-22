@@ -144,15 +144,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(fromUser){
 
-                    int itemDuration = progress;
-                    long minutes = TimeUnit.MILLISECONDS.toMinutes(itemDuration);
-                    long seconds = TimeUnit.MILLISECONDS.toSeconds(itemDuration)
-                            - TimeUnit.MINUTES.toSeconds(minutes);
-                    songStartDuration.setText(String.format("%02d:%02d", minutes, seconds));
-
                     userSelectedPosition=progress;
 
                 }
+
+
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(progress);
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(progress)
+                        - TimeUnit.MINUTES.toSeconds(minutes);
+                songStartDuration.setText(String.format("%02d:%02d", minutes, seconds));
 
             }
 
@@ -420,6 +420,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     musicService.startForeground(NotificationMangerHelper.REQUEST_CODE,notificationMangerHelper.createNotification());
                 }
             },250);
+
+
+
 
         }
 
